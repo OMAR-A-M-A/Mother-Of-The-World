@@ -2,9 +2,6 @@
 
 > A dynamic web application serving as a comprehensive tourism guide for Egypt, featuring a categorized directory of historical, beach, and sea attractions, powered by a custom Admin Dashboard.
 
-![Project Banner](assets/images/project-banner-placeholder.png)
-*(Note: Replace the image path above with a screenshot of your project)*
-
 ## 📖 Table of Contents
 - [About the Project](#-about-the-project)
 - [Features](#-features)
