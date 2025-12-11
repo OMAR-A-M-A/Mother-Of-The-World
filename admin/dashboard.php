@@ -1,16 +1,11 @@
 <?php
-// تضمين ملف الاتصال. نستخدم المسار النسبي:
+// Include the database connection file. Using relative path:
 include '../includes/db_connect.php'; 
 
-// التحقق من نجاح الاتصال (للتأكد فقط)
-if (!isset($conn) || $conn->connect_error) {
-    die("خطأ في الاتصال بقاعدة البيانات.");
-}
-
-// 1. جلب بيانات الإحصائيات ديناميكياً باستخدام MySQLi
+// 1. Fetch dynamic statistics data using MySQLi
 $stats = [];
 
-// استعلامات SQL لحساب الإجماليات
+// SQL queries to calculate totals
 $queries = [
     'Total Governorates' => "SELECT COUNT(G_ID) AS count FROM governorates",
     'Total Categories' => "SELECT COUNT(C_ID) AS count FROM categories",
@@ -18,6 +13,7 @@ $queries = [
     'Total Admins' => "SELECT COUNT(ID) AS count FROM admins",
 ];
 
+// Mapping for icons and background colors
 $icon_mapping = [
     'Total Governorates' => ['icon' => 'fa-city', 'bg_color' => 'bg-primary'],
     'Total Categories' => ['icon' => 'fa-list-ul', 'bg_color' => 'bg-info'],
@@ -27,28 +23,28 @@ $icon_mapping = [
 
 
 foreach ($queries as $title => $sql) {
-    // تنفيذ الاستعلام مباشرة باستخدام query()
+    // Execute the query directly using query()
     $result = $conn->query($sql); 
     
     if ($result) {
-        // جلب الصف الناتج باستخدام fetch_assoc()
+        // Fetch the resulting row using fetch_assoc()
         $row = $result->fetch_assoc(); 
         $count = $row['count'];
-        $result->free(); // تحرير النتائج
+        $result->free(); // Free the result set
     } else {
         $count = 0;
-        // يمكنك هنا تسجيل $conn->error للتحقق من خطأ SQL
+        // Optional: log $conn->error to debug SQL issue
     }
     
     $stats[] = [
         'title' => $title,
-        'count' => number_format($count), // تنسيق الرقم
+        'count' => number_format($count), // Format the number
         'icon' => $icon_mapping[$title]['icon'],
         'bg_color' => $icon_mapping[$title]['bg_color'],
     ];
 }
 
-// 2. جلب بيانات الأماكن (الجدول الرئيسي) باستخدام MySQLi
+// 2. Fetch data for recent places (main table) using MySQLi
 $places_sql = "
     SELECT 
         p.P_ID, 
@@ -67,19 +63,19 @@ $places_sql = "
     LIMIT 10
 ";
 
-// تنفيذ الاستعلام
+// Execute the query
 $result_places = $conn->query($places_sql);
 $places = [];
 
 if ($result_places) {
-    // جلب جميع الصفوف وتحويلها إلى مصفوفة
+    // Fetch all rows and convert them into an array
     while ($row = $result_places->fetch_assoc()) {
         $places[] = $row;
     }
     $result_places->free();
 }
 
-// إغلاق الاتصال بعد الانتهاء من جميع الاستعلامات (خطوة اختيارية في نهاية الكود)
+// Close the connection after finishing all queries (optional step at the end of the code)
 // $conn->close();
 
 ?>
@@ -90,11 +86,13 @@ if ($result_places) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V-Dashboard - Dynamic Admin</title>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="../assets/css/all.min.css">
     
     <style>
-        /* (تنسيقات CSS المخصصة نفسها) */
+        /* Custom CSS styles */
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; }
         .icon-box { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; }
         .badge-active { background-color: #d1fae5; color: #065f46; padding: 5px 12px; border-radius: 20px; font-weight: 600; }
@@ -107,12 +105,14 @@ if ($result_places) {
 <div class="d-flex">
     
     <?php
+    // Include sidebar navigation
     include 'includes/sidebar.php';
     ?>
 
     <div class="w-100 d-flex flex-column">
         
         <?php
+        // Include top navigation bar
         include 'includes/navbar.php';
         ?>
 
@@ -135,7 +135,6 @@ if ($result_places) {
                 </div>
                 <?php endforeach; ?>
             </div>
-
             <h3 class="mb-3 mt-5 text-secondary fw-bold">Recent Places</h3>
             
             <div class="card border-0 shadow-sm">
@@ -158,7 +157,10 @@ if ($result_places) {
                                     <tr>
                                         <td class="ps-4 py-3">
                                             <div class="d-flex align-items-center">
-                                                <?php $image_src = !empty($place['main_image']) ? htmlspecialchars($place['main_image']) : 'https://via.placeholder.com/40x40?text=P'; ?>
+                                                <?php 
+                                                    // Set image path or placeholder
+                                                    $image_src = !empty($place['main_image']) ? htmlspecialchars($place['main_image']) : 'https://via.placeholder.com/40x40?text=P'; 
+                                                ?>
                                                 <img src="<?php echo $image_src; ?>" class="table-img me-3" alt="Place Image">
                                                 <div class="text-muted small">#<?php echo htmlspecialchars($place['P_ID']); ?></div>
                                             </div>
@@ -175,7 +177,7 @@ if ($result_places) {
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="6" class="text-center py-4 text-muted">لا توجد أماكن مُضافة حاليًا في قاعدة البيانات.</td>
+                                        <td colspan="6" class="text-center py-4 text-muted">No places are currently added in the database.</td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>
@@ -183,11 +185,10 @@ if ($result_places) {
                     </div>
                 </div>
             </div>
-
-        </div>
+            </div>
     </div>
 </div>
-
+<!-- bootstrap js -->
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
    <?php
         session_start();
-        $display_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Admin';
+        $display_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin';
     ?>
    <nav class="navbar navbar-light bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
              <div class="d-flex align-items-center">

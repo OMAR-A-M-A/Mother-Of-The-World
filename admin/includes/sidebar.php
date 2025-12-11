@@ -9,11 +9,11 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link active"><i class="fa-solid fa-chart-pie me-2"></i> Dashboard</a>
+                <a href="../admin/dashboard.php" class="nav-link active"><i class="fa-solid fa-chart-pie me-2"></i> Dashboard</a>
             </li>
             <li><a href="#" class="nav-link"><i class="fa-solid fa-users me-2"></i> Admins</a></li>
             <li><a href="#" class="nav-link"><i class="fa-solid fa-city me-2"></i> Governorates</a></li>
-            <li><a href="#" class="nav-link"><i class="fa-solid fa-tag me-2"></i> Categories</a></li>
+            <li><a href="../admin/category/manage_category.php" class="nav-link"><i class="fa-solid fa-tag me-2"></i> Categories</a></li>
             <li><a href="#" class="nav-link"><i class="fa-solid fa-images me-2"></i> Place Images</a></li>
         </ul>
     </div>
