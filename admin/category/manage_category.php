@@ -1,10 +1,12 @@
 <?php
-// Include the database connection file.
-include '<?php echo BASE_URL; ?> includes/db_connect.php'; 
- 
-// Check if the connection was successful
-if (!isset($conn) || $conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+session_start();
+include '../../config.php';
+include '../../includes/db_connect.php';
+
+// 2. Authentication Check
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: " . BASE_URL . "admin/index.php");
+    exit();
 }
 
 // ==========================================================
@@ -16,12 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_category'])) {
     $category_name = trim($_POST['category_name']);
 
     if (!empty($category_name)) {
-        // Use Prepared Statements for security against SQL Injection
         $stmt = $conn->prepare("INSERT INTO categories (C_name) VALUES (?)");
         $stmt->bind_param("s", $category_name);
 
         if ($stmt->execute()) {
-            $add_message = "<div class='alert alert-success'>Category '{$category_name}' added successfully!</div>";
+            // Redirect to prevent form resubmission
+            header("Location: manage_category.php?added=1");
+            exit();
         } else {
             $add_message = "<div class='alert alert-danger'>Error adding category: " . $stmt->error . "</div>";
         }
@@ -31,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_category'])) {
         $add_message = "<div class='alert alert-warning'>Category name cannot be empty.</div>";
     }
 }
+
 
 // ==========================================================
 // 2. Fetch All Categories for Display (Read)
@@ -70,14 +74,14 @@ if ($result) {
     
     <?php
     // Include sidebar navigation
-    include '<?php echo BASE_URL; ?>includes/sidebar.php';
+    include '../includes/sidebar.php';
     ?>
 
     <div class="w-100 d-flex flex-column">
         
         <?php
         // Include top navigation bar
-        include '<?php echo BASE_URL; ?>includes/navbar.php';
+        include '../includes/navbar.php';
         ?>
 
         <div class="container-fluid p-4 bg-light h-100">
@@ -132,9 +136,10 @@ if ($result) {
                             </thead>
                             <tbody>
                                 <?php if (count($categories) > 0): ?>
+                                    <?php $i=1; ?>
                                     <?php foreach($categories as $category): ?>
                                     <tr>
-                                        <td class="ps-4 py-3 text-muted small">#<?php echo htmlspecialchars($category['C_ID']); ?></td>
+                                        <td class="ps-4 py-3 text-muted small">#<?php echo $i; ?></td>
                                         <td><div class="fw-bold text-dark"><?php echo htmlspecialchars($category['C_name']); ?></div></td>
                                         <td class="text-end pe-4">
                                             <a href="edit_category.php?id=<?php echo $category['C_ID']; ?>" class="text-info text-decoration-none action-icon" title="Edit">
@@ -145,7 +150,7 @@ if ($result) {
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php endforeach; ?>
+                                    <?php $i++; endforeach; ?>
                                 <?php else: ?>
                                     <tr>
                                         <td colspan="3" class="text-center py-4 text-muted">No categories found. Please add a new one.</td>

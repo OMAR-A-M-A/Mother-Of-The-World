@@ -1,6 +1,11 @@
 <?php
 session_start();
-include '<?php echo BASE_URL; ?>includes/db_connect.php'; 
+// 1. Include Configuration File (Crucial for BASE_URL)
+include '../config.php';
+
+// 2. Include Database Connection
+include '../includes/db_connect.php'; 
+
 // Check if user is already logged in -> Redirect to Dashboard directly
 if (isset($_SESSION['admin_id'])) {
     header("Location: dashboard.php");

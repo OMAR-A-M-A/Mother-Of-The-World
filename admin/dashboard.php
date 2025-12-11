@@ -1,10 +1,4 @@
 <?php
-<<<<<<< HEAD
-// Include the database connection file. Using relative path:
-include '../includes/db_connect.php'; 
-
-// 1. Fetch dynamic statistics data using MySQLi
-=======
 session_start();
 
 // 1. Include Configuration File (Crucial for BASE_URL)
@@ -12,7 +6,7 @@ session_start();
 include '../config.php';
 
 // 2. Include Database Connection
-include '../includes/db_connect.php';
+include "../includes/db_connect.php";
 
 // Check if admin is logged in
 if (!isset($_SESSION['admin_id'])) {
@@ -28,7 +22,6 @@ if (!isset($conn) || $conn->connect_error) {
 // ---------------------------------------------------------
 // 1. Fetch Statistics Data Dynamically using MySQLi
 // ---------------------------------------------------------
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $stats = [];
 
 // SQL queries to calculate totals
@@ -39,11 +32,8 @@ $queries = [
     'Total Admins' => "SELECT COUNT(ID) AS count FROM admins",
 ];
 
-<<<<<<< HEAD
+
 // Mapping for icons and background colors
-=======
-// Icon and color mapping for the dashboard cards
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $icon_mapping = [
     'Total Governorates' => ['icon' => 'fa-city', 'bg_color' => 'bg-primary'],
     'Total Categories' => ['icon' => 'fa-list-ul', 'bg_color' => 'bg-info'],
@@ -52,7 +42,7 @@ $icon_mapping = [
 ];
 
 foreach ($queries as $title => $sql) {
-<<<<<<< HEAD
+
     // Execute the query directly using query()
     $result = $conn->query($sql); 
     
@@ -64,40 +54,17 @@ foreach ($queries as $title => $sql) {
     } else {
         $count = 0;
         // Optional: log $conn->error to debug SQL issue
-=======
-    // Execute query directly
-    $result = $conn->query($sql);
-
-    if ($result) {
-        // Fetch the result row
-        $row = $result->fetch_assoc();
-        $count = $row['count'];
-        $result->free(); // Free result memory
-    } else {
-        $count = 0;
-        // You can log $conn->error here for debugging if needed
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
     }
 
     $stats[] = [
         'title' => $title,
-<<<<<<< HEAD
         'count' => number_format($count), // Format the number
-=======
-        'count' => number_format($count), // Format number (e.g., 1,000)
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
         'icon' => $icon_mapping[$title]['icon'],
         'bg_color' => $icon_mapping[$title]['bg_color'],
     ];
 }
 
-<<<<<<< HEAD
 // 2. Fetch data for recent places (main table) using MySQLi
-=======
-// ---------------------------------------------------------
-// 2. Fetch Recent Places (Main Table) using MySQLi
-// ---------------------------------------------------------
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $places_sql = "
     SELECT 
         p.P_ID, 
@@ -116,32 +83,22 @@ $places_sql = "
     LIMIT 10
 ";
 
-<<<<<<< HEAD
 // Execute the query
-=======
-// Execute query
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $result_places = $conn->query($places_sql);
 $places = [];
 
 if ($result_places) {
-<<<<<<< HEAD
+
     // Fetch all rows and convert them into an array
-=======
-    // Fetch all rows and store them in an array
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
     while ($row = $result_places->fetch_assoc()) {
         $places[] = $row;
     }
     $result_places->free();
 }
 
-<<<<<<< HEAD
+
 // Close the connection after finishing all queries (optional step at the end of the code)
-=======
-// Close connection (Optional at the end of script, but good practice)
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
-// $conn->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -152,8 +109,10 @@ if ($result_places) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V-Dashboard - Dynamic Admin</title>
 
-    <link href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
 
     <style>
         /* Custom CSS Styles */
@@ -197,7 +156,6 @@ if ($result_places) {
 
 <body>
 
-<<<<<<< HEAD
 <div class="d-flex">
     
     <?php
@@ -295,8 +253,6 @@ if ($result_places) {
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <?php endforeach; ?>
             </div>
             <h3 class="mb-3 mt-5 text-secondary fw-bold">Recent Places</h3>
             
