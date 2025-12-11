@@ -1,8 +1,34 @@
 <?php
+<<<<<<< HEAD
 // Include the database connection file. Using relative path:
 include '../includes/db_connect.php'; 
 
 // 1. Fetch dynamic statistics data using MySQLi
+=======
+session_start();
+
+// 1. Include Configuration File (Crucial for BASE_URL)
+// Adjust the path '../config.php' if this file is deeper in folders (e.g., '../../config.php')
+include '../config.php';
+
+// 2. Include Database Connection
+include '../includes/db_connect.php';
+
+// Check if admin is logged in
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: " . BASE_URL . "admin/index.php"); // Redirect using BASE_URL is safer
+    exit();
+}
+
+// Verify connection success (Optional check)
+if (!isset($conn) || $conn->connect_error) {
+    die("Database connection error.");
+}
+
+// ---------------------------------------------------------
+// 1. Fetch Statistics Data Dynamically using MySQLi
+// ---------------------------------------------------------
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $stats = [];
 
 // SQL queries to calculate totals
@@ -13,7 +39,11 @@ $queries = [
     'Total Admins' => "SELECT COUNT(ID) AS count FROM admins",
 ];
 
+<<<<<<< HEAD
 // Mapping for icons and background colors
+=======
+// Icon and color mapping for the dashboard cards
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $icon_mapping = [
     'Total Governorates' => ['icon' => 'fa-city', 'bg_color' => 'bg-primary'],
     'Total Categories' => ['icon' => 'fa-list-ul', 'bg_color' => 'bg-info'],
@@ -21,8 +51,8 @@ $icon_mapping = [
     'Total Admins' => ['icon' => 'fa-user-tie', 'bg_color' => 'bg-success'],
 ];
 
-
 foreach ($queries as $title => $sql) {
+<<<<<<< HEAD
     // Execute the query directly using query()
     $result = $conn->query($sql); 
     
@@ -34,17 +64,40 @@ foreach ($queries as $title => $sql) {
     } else {
         $count = 0;
         // Optional: log $conn->error to debug SQL issue
+=======
+    // Execute query directly
+    $result = $conn->query($sql);
+
+    if ($result) {
+        // Fetch the result row
+        $row = $result->fetch_assoc();
+        $count = $row['count'];
+        $result->free(); // Free result memory
+    } else {
+        $count = 0;
+        // You can log $conn->error here for debugging if needed
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
     }
-    
+
     $stats[] = [
         'title' => $title,
+<<<<<<< HEAD
         'count' => number_format($count), // Format the number
+=======
+        'count' => number_format($count), // Format number (e.g., 1,000)
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
         'icon' => $icon_mapping[$title]['icon'],
         'bg_color' => $icon_mapping[$title]['bg_color'],
     ];
 }
 
+<<<<<<< HEAD
 // 2. Fetch data for recent places (main table) using MySQLi
+=======
+// ---------------------------------------------------------
+// 2. Fetch Recent Places (Main Table) using MySQLi
+// ---------------------------------------------------------
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $places_sql = "
     SELECT 
         p.P_ID, 
@@ -63,29 +116,42 @@ $places_sql = "
     LIMIT 10
 ";
 
+<<<<<<< HEAD
 // Execute the query
+=======
+// Execute query
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 $result_places = $conn->query($places_sql);
 $places = [];
 
 if ($result_places) {
+<<<<<<< HEAD
     // Fetch all rows and convert them into an array
+=======
+    // Fetch all rows and store them in an array
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
     while ($row = $result_places->fetch_assoc()) {
         $places[] = $row;
     }
     $result_places->free();
 }
 
+<<<<<<< HEAD
 // Close the connection after finishing all queries (optional step at the end of the code)
+=======
+// Close connection (Optional at the end of script, but good practice)
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 // $conn->close();
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V-Dashboard - Dynamic Admin</title>
+<<<<<<< HEAD
     <!-- bootstrap css -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <!-- font awesome -->
@@ -98,10 +164,54 @@ if ($result_places) {
         .badge-active { background-color: #d1fae5; color: #065f46; padding: 5px 12px; border-radius: 20px; font-weight: 600; }
         .table-img { width: 40px; height: 40px; object-fit: cover; border-radius: 5px;}
         *{ box-sizing: border-box; }
+=======
+
+    <link href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom CSS Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .badge-active {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .table-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
     </style>
 </head>
+
 <body>
 
+<<<<<<< HEAD
 <div class="d-flex">
     
     <?php
@@ -115,24 +225,103 @@ if ($result_places) {
         // Include top navigation bar
         include 'includes/navbar.php';
         ?>
+=======
+    <div class="d-flex">
 
-        <div class="container-fluid p-4 bg-light h-100">
-            <h3 class="mb-4 text-secondary fw-bold">Dashboard Overview</h3>
+        <?php include 'includes/sidebar.php'; ?>
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 
-            <div class="row g-4 mb-4">
-                <?php foreach($stats as $stat): ?>
-                <div class="col-6"> <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body d-flex align-items-center">
-                            <div class="icon-box <?php echo $stat['bg_color']; ?> me-3">
-                                <i class="fa-solid <?php echo $stat['icon']; ?>"></i>
+        <div class="w-100 d-flex flex-column">
+
+            <?php include 'includes/navbar.php'; ?>
+
+            <div class="container-fluid p-4 bg-light h-100">
+                <h3 class="mb-4 text-secondary fw-bold">Dashboard Overview</h3>
+
+                <div class="row g-4 mb-4">
+                    <?php foreach ($stats as $stat): ?>
+                        <div class="col-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="icon-box <?php echo $stat['bg_color']; ?> me-3">
+                                        <i class="fa-solid <?php echo $stat['icon']; ?>"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fw-bold mb-0"><?php echo $stat['count']; ?></h4>
+                                        <span class="text-muted"><?php echo $stat['title']; ?></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="fw-bold mb-0"><?php echo $stat['count']; ?></h4>
-                                <span class="text-muted"><?php echo $stat['title']; ?></span>
-                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <h3 class="mb-3 mt-5 text-secondary fw-bold">Recent Places</h3>
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="ps-4 py-3 text-secondary text-uppercase" style="font-size:0.8rem">
+                                            Image/ID</th>
+                                        <th class="py-3 text-secondary text-uppercase" style="font-size:0.8rem">Place
+                                            Name</th>
+                                        <th class="py-3 text-secondary text-uppercase" style="font-size:0.8rem">
+                                            Governorate</th>
+                                        <th class="py-3 text-secondary text-uppercase" style="font-size:0.8rem">Category
+                                        </th>
+                                        <th class="py-3 text-secondary text-uppercase" style="font-size:0.8rem">Price
+                                        </th>
+                                        <th class="text-end pe-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (count($places) > 0): ?>
+                                        <?php foreach ($places as $place): ?>
+                                            <tr>
+                                                <td class="ps-4 py-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <?php $image_src = !empty($place['main_image']) ? htmlspecialchars($place['main_image']) : 'https://via.placeholder.com/40x40?text=P'; ?>
+                                                        <img src="<?php echo $image_src; ?>" class="table-img me-3"
+                                                            alt="Place Image">
+                                                        <div class="text-muted small">
+                                                            #<?php echo htmlspecialchars($place['P_ID']); ?></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="fw-bold text-dark">
+                                                        <?php echo htmlspecialchars($place['p_name']); ?></div>
+                                                </td>
+                                                <td><span
+                                                        class="badge bg-primary-subtle text-primary"><?php echo htmlspecialchars($place['governorate_name'] ?? 'N/A'); ?></span>
+                                                </td>
+                                                <td><span
+                                                        class="badge bg-secondary-subtle text-secondary"><?php echo htmlspecialchars($place['category_name'] ?? 'N/A'); ?></span>
+                                                </td>
+                                                <td>
+                                                    <div class="fw-normal">
+                                                        <?php echo number_format($place['ticket_price'], 2) . ' EGP'; ?></div>
+                                                </td>
+                                                <td class="text-end pe-4">
+                                                    <a href="#" class="text-primary text-decoration-none fw-bold me-2">Edit</a>
+                                                    <a href="#" class="text-danger text-decoration-none fw-bold">Delete</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="6" class="text-center py-4 text-muted">No places currently added in
+                                                the database.</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <?php endforeach; ?>
             </div>
             <h3 class="mb-3 mt-5 text-secondary fw-bold">Recent Places</h3>
@@ -190,5 +379,14 @@ if ($result_places) {
 </div>
 <!-- bootstrap js -->
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
+=======
+
+            </div>
+        </div>
+    </div>
+
+    <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
+>>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 </body>
+
 </html>
