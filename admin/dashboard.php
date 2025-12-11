@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-// 1. Include Configuration File (Crucial for BASE_URL)
-// Adjust the path '../config.php' if this file is deeper in folders (e.g., '../../config.php')
+// 1. Include Configuration File
 include '../config.php';
 
 // 2. Include Database Connection
@@ -10,21 +9,20 @@ include '../includes/db_connect.php';
 
 // Check if admin is logged in
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: " . BASE_URL . "admin/index.php"); // Redirect using BASE_URL is safer
+    header("Location: " . BASE_URL . "admin/index.php");
     exit();
 }
 
-// Verify connection success (Optional check)
+// Verify connection success
 if (!isset($conn) || $conn->connect_error) {
     die("Database connection error.");
 }
 
 // ---------------------------------------------------------
-// 1. Fetch Statistics Data Dynamically using MySQLi
+// 1. Fetch Statistics Data Dynamically
 // ---------------------------------------------------------
 $stats = [];
 
-// SQL queries to calculate totals
 $queries = [
     'Total Governorates' => "SELECT COUNT(G_ID) AS count FROM governorates",
     'Total Categories' => "SELECT COUNT(C_ID) AS count FROM categories",
@@ -32,7 +30,6 @@ $queries = [
     'Total Admins' => "SELECT COUNT(ID) AS count FROM admins",
 ];
 
-// Icon and color mapping for the dashboard cards
 $icon_mapping = [
     'Total Governorates' => ['icon' => 'fa-city', 'bg_color' => 'bg-primary'],
     'Total Categories' => ['icon' => 'fa-list-ul', 'bg_color' => 'bg-info'],
@@ -41,29 +38,25 @@ $icon_mapping = [
 ];
 
 foreach ($queries as $title => $sql) {
-    // Execute query directly
     $result = $conn->query($sql);
-
     if ($result) {
-        // Fetch the result row
         $row = $result->fetch_assoc();
         $count = $row['count'];
-        $result->free(); // Free result memory
+        $result->free();
     } else {
         $count = 0;
-        // You can log $conn->error here for debugging if needed
     }
 
     $stats[] = [
         'title' => $title,
-        'count' => number_format($count), // Format number (e.g., 1,000)
+        'count' => number_format($count),
         'icon' => $icon_mapping[$title]['icon'],
         'bg_color' => $icon_mapping[$title]['bg_color'],
     ];
 }
 
 // ---------------------------------------------------------
-// 2. Fetch Recent Places (Main Table) using MySQLi
+// 2. Fetch Recent Places (Main Table)
 // ---------------------------------------------------------
 $places_sql = "
     SELECT 
@@ -83,20 +76,15 @@ $places_sql = "
     LIMIT 10
 ";
 
-// Execute query
 $result_places = $conn->query($places_sql);
 $places = [];
 
 if ($result_places) {
-    // Fetch all rows and store them in an array
     while ($row = $result_places->fetch_assoc()) {
         $places[] = $row;
     }
     $result_places->free();
 }
-
-// Close connection (Optional at the end of script, but good practice)
-// $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -111,7 +99,6 @@ if ($result_places) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Custom CSS Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
@@ -203,15 +190,25 @@ if ($result_places) {
                                 </thead>
                                 <tbody>
                                     <?php if (count($places) > 0): ?>
+                                        <?php $i=1; ?>
                                         <?php foreach ($places as $place): ?>
                                             <tr>
                                                 <td class="ps-4 py-3">
                                                     <div class="d-flex align-items-center">
-                                                        <?php $image_src = !empty($place['main_image']) ? htmlspecialchars($place['main_image']) : 'https://via.placeholder.com/40x40?text=P'; ?>
+                                                        <?php
+                                                        // --- Image Path Logic ---
+                                                        // If database has an image name, append it to BASE_URL and places folder path
+                                                        if (!empty($place['main_image'])) {
+                                                            $image_src = BASE_URL . 'assets/uploads/places/' . htmlspecialchars($place['main_image']);
+                                                        } else {
+                                                            // Fallback placeholder if no image exists
+                                                            $image_src = 'https://via.placeholder.com/40x40?text=P';
+                                                        }
+                                                        ?>
                                                         <img src="<?php echo $image_src; ?>" class="table-img me-3"
                                                             alt="Place Image">
                                                         <div class="text-muted small">
-                                                            #<?php echo htmlspecialchars($place['P_ID']); ?></div>
+                                                            #<?php echo $i ?></div>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -233,7 +230,7 @@ if ($result_places) {
                                                     <a href="#" class="text-danger text-decoration-none fw-bold">Delete</a>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
+                                        <?php $i++ ;endforeach; ?>
                                     <?php else: ?>
                                         <tr>
                                             <td colspan="6" class="text-center py-4 text-muted">No places currently added in

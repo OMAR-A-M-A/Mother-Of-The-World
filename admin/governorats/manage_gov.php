@@ -108,7 +108,7 @@ $result = mysqli_query($conn, $sql);
                                         <?php $i = 1;
                                         while ($row = mysqli_fetch_assoc($result)): ?>
                                             <tr>
-                                                <td><?php echo $i; ?></td>
+                                                <td class="text-muted">#<?php echo $i; ?></td>
                                                 <td>
                                                     <?php
                                                     $img_name = $row['image_url'];
