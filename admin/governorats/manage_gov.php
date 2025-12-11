@@ -2,7 +2,7 @@
 session_start();
 
 include '../../includes/db_connect.php';
-
+include '../../config.php';
 // 2. Authentication Check
 if (!isset($_SESSION['admin_id'])) {
     header("Location: " . BASE_URL . "admin/index.php");
@@ -50,8 +50,10 @@ $result = mysqli_query($conn, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Governorates</title>
 
+    <!-- bootstrap css -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
 </head>
 
 <body>
