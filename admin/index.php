@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 2. Verify Password
         if ($password == $row['password']) { 
             // 3. Set Session Variables
-            $_SESSION['admin_id'] = $row['id'];
+            $_SESSION['admin_id'] = $row['ID'];
             $_SESSION['admin_name'] = $row['user_name'];
             
             // 4. Redirect to Dashboard
@@ -52,9 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="../assets/css/all.min.css">
+    <!-- costum css -->
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
     body {
-        background-image: url('../assets/images/log-in.webp');
+        background-image: url('../assets/images/login.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -70,6 +72,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .login-card {
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     }
+
+    /* .website {
+        color:gray;
+        transition: 0.3s;
+        background-color:#5bc0de;
+        padding: 10px;
+        border-radius: 15px;
+        &:hover {
+            color: orange;
+            background-color: var(--primary-blue);
+        }
+    } */
     </style>
 </head>
 
@@ -103,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
 
             <div class="text-center mt-4">
-                <a href="../index.php" class="text-decoration-none text-muted ">Back to Website</a>
+                <a href="../index.php" class="text-decoration-none text-muted website">Back to Website</a>
             </div>
         </div>
     </section>
