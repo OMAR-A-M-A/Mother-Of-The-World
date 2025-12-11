@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-   <?php
-        session_start();
-        $display_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin';
-    ?>
-   <nav class="navbar navbar-light bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
-             <div class="d-flex align-items-center">
-=======
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -15,7 +7,7 @@ $display_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admi
 ?>
 <nav class="navbar navbar-light bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
+
         <h5 class="mb-0 text-dark me-2">
             Welcome,
         </h5>

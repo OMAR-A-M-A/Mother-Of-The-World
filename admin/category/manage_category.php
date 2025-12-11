@@ -1,7 +1,7 @@
 <?php
 // Include the database connection file.
-include '../../includes/db_connect.php'; 
-
+include '<?php echo BASE_URL; ?> includes/db_connect.php'; 
+ 
 // Check if the connection was successful
 if (!isset($conn) || $conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -56,9 +56,9 @@ if ($result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Categories</title>
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
     <!-- font awesome -->
-    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
     <style>
         body { background-color: #f8f9fa; }
         .action-icon { font-size: 1.1rem; margin: 0 5px; }
@@ -70,14 +70,14 @@ if ($result) {
     
     <?php
     // Include sidebar navigation
-    include '../includes/sidebar.php';
+    include '<?php echo BASE_URL; ?>includes/sidebar.php';
     ?>
 
     <div class="w-100 d-flex flex-column">
         
         <?php
         // Include top navigation bar
-        include '../includes/navbar.php';
+        include '<?php echo BASE_URL; ?>includes/navbar.php';
         ?>
 
         <div class="container-fluid p-4 bg-light h-100">
@@ -161,6 +161,6 @@ if ($result) {
     </div>
 </div>
 <!-- bootstrap js -->
-<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

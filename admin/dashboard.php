@@ -151,20 +151,6 @@ if ($result_places) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V-Dashboard - Dynamic Admin</title>
-<<<<<<< HEAD
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    
-    <style>
-        /* Custom CSS styles */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; }
-        .icon-box { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; }
-        .badge-active { background-color: #d1fae5; color: #065f46; padding: 5px 12px; border-radius: 20px; font-weight: 600; }
-        .table-img { width: 40px; height: 40px; object-fit: cover; border-radius: 5px;}
-        *{ box-sizing: border-box; }
-=======
 
     <link href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -205,7 +191,7 @@ if ($result_places) {
         * {
             box-sizing: border-box;
         }
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
+
     </style>
 </head>
 
@@ -218,18 +204,6 @@ if ($result_places) {
     // Include sidebar navigation
     include 'includes/sidebar.php';
     ?>
-
-    <div class="w-100 d-flex flex-column">
-        
-        <?php
-        // Include top navigation bar
-        include 'includes/navbar.php';
-        ?>
-=======
-    <div class="d-flex">
-
-        <?php include 'includes/sidebar.php'; ?>
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
 
         <div class="w-100 d-flex flex-column">
 
@@ -378,15 +352,7 @@ if ($result_places) {
     </div>
 </div>
 <!-- bootstrap js -->
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
-=======
-
-            </div>
-        </div>
-    </div>
-
-    <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
->>>>>>> 337f3343145e3f6c0d6cd9f624104c740184ff1f
+<script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
