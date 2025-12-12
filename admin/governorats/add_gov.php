@@ -3,7 +3,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Governorates</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Governorate</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -14,6 +14,13 @@
                         <input type="text" name="governorate_name" class="form-control"
                             placeholder="Enter governorate name" required>
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="governorate_desc" class="form-control" rows="3"
+                            placeholder="Enter description"></textarea>
+                    </div>
+
                     <div class="mb-3">
                         <label class="form-label">Governorate Image</label>
                         <input type="file" name="governorate_image" class="form-control" required>

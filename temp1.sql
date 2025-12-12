@@ -8,6 +8,7 @@ CREATE TABLE governorates (
     G_ID INT PRIMARY KEY AUTO_INCREMENT,
     G_name VARCHAR(255),
     image_url VARCHAR(255)
+    G_description TEXT
 );
 
 CREATE TABLE categories (
