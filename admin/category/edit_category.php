@@ -1,10 +1,8 @@
 <?php
 session_start();
 include '../../config.php';
-// Include the database connection file.
-include '../../includes/db_connect.php'; 
+include '../../includes/db_connect.php';
 
-// 2. Authentication Check
 if (!isset($_SESSION['admin_id'])) {
     header("Location: " . BASE_URL . "admin/index.php");
     exit();
@@ -13,7 +11,6 @@ if (!isset($_SESSION['admin_id'])) {
 $category_data = null;
 $edit_message = '';
 
-// Check for ID in URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: manage_category.php?status=invalid_id");
     exit();
@@ -22,35 +19,53 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $category_id = intval($_GET['id']);
 
 // ==========================================================
-// 1. Handle Form Submission (UPDATE logic)
+// 1. UPDATE Logic
 // ==========================================================
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_category'])) {
     $new_name = trim($_POST['category_name']);
-    $category_id_post = intval($_POST['category_id']); // Ensure ID is taken from POST hidden field
+    $new_desc = trim($_POST['category_desc']);
+    $old_image = $_POST['old_image'];
 
-    if (!empty($new_name) && $category_id_post == $category_id) {
-        // Prepare UPDATE statement
-        $stmt = $conn->prepare("UPDATE categories SET C_name = ? WHERE C_ID = ?");
-        $stmt->bind_param("si", $new_name, $category_id); 
+    // Image Handling
+    $image_name = $_FILES['category_image']['name'];
+    $final_image_name = $old_image; // Default to old image
+
+    if (!empty($new_name)) {
+        // If a new image is uploaded
+        if (!empty($image_name)) {
+            $image_tmp = $_FILES['category_image']['tmp_name'];
+            $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+            $final_image_name = time() . "_" . uniqid() . "." . $ext;
+
+            // Upload new
+            move_uploaded_file($image_tmp, "../../assets/uploads/categories/" . $final_image_name);
+
+            // Delete old if exists
+            if (!empty($old_image) && file_exists("../../assets/uploads/categories/" . $old_image)) {
+                unlink("../../assets/uploads/categories/" . $old_image);
+            }
+        }
+
+        $stmt = $conn->prepare("UPDATE categories SET C_name = ?, C_description = ?, C_image = ? WHERE C_ID = ?");
+        $stmt->bind_param("sssi", $new_name, $new_desc, $final_image_name, $category_id);
 
         if ($stmt->execute()) {
             $edit_message = "<div class='alert alert-success'>Category updated successfully!</div>";
+            // Refresh old image variable for display
+            $old_image = $final_image_name;
         } else {
-            $edit_message = "<div class='alert alert-danger'>Error updating category: " . $stmt->error . "</div>";
+            $edit_message = "<div class='alert alert-danger'>Error updating: " . $stmt->error . "</div>";
         }
         $stmt->close();
     } else {
         $edit_message = "<div class='alert alert-warning'>Category name cannot be empty.</div>";
     }
-    // After update attempt, re-fetch data to reflect changes
 }
 
-
 // ==========================================================
-// 2. Fetch current category data (READ logic)
+// 2. Fetch Data
 // ==========================================================
-// Prepare statement to avoid SQL injection on initial ID load
-$stmt = $conn->prepare("SELECT C_ID, C_name FROM categories WHERE C_ID = ? LIMIT 1");
+$stmt = $conn->prepare("SELECT * FROM categories WHERE C_ID = ? LIMIT 1");
 $stmt->bind_param("i", $category_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -58,66 +73,109 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $category_data = $result->fetch_assoc();
 } else {
-    // Category not found
     header("Location: manage_category.php?status=not_found");
     exit();
 }
 $stmt->close();
-$conn->close();
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Category - <?php echo htmlspecialchars($category_data['C_name']); ?></title>
-    <!-- bootstrap css -->
+    <title>Edit Category</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
-<div class="d-flex">
-    <?php include '../includes/sidebar.php'; ?>
+    <div class="d-flex">
 
-    <div class="w-100 d-flex flex-column">
-        <?php include '../includes/navbar.php'; ?>
+        <?php include '../includes/sidebar.php'; ?>
 
-        <div class="container-fluid p-4 bg-light h-100">
-            <h3 class="mb-4 text-secondary fw-bold"><i class="fa-solid fa-pen-to-square me-2"></i> Edit Category</h3>
+        <div class="flex-grow-1 bg-light">
 
-            <?php echo $edit_message; ?>
+            <?php include '../includes/navbar.php'; ?>
 
-            <div class="card mb-4 shadow-sm border-0">
-                <div class="card-header bg-white fw-bold">Editing Category ID: <?php echo $category_data['C_ID']; ?></div>
-                <div class="card-body">
-                    <form method="POST" action="edit_category.php?id=<?php echo $category_id; ?>">
-                        
-                        <input type="hidden" name="category_id" value="<?php echo $category_data['C_ID']; ?>">
+            <div class="container-fluid p-4">
 
-                        <div class="mb-3">
-                            <label for="category_name" class="form-label">Category Name</label>
-                            <input type="text" name="category_name" id="category_name" class="form-control" 
-                                value="<?php echo htmlspecialchars($category_data['C_name']); ?>" required>
-                        </div>
-                        
-                        <button type="submit" name="update_category" class="btn btn-success">
-                            <i class="fa-solid fa-save me-1"></i> Save Changes
-                        </button>
-                        <a href="manage_category.php" class="btn btn-secondary">
-                             <i class="fa-solid fa-arrow-left me-1"></i> Back to Categories
-                        </a>
-                    </form>
+                <div class="mb-4">
+                    <a href="manage_category.php" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Back to List
+                    </a>
                 </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+
+                        <?php echo $edit_message; ?>
+
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-white py-3">
+                                <h4 class="text-primary m-0"><i class="fa-solid fa-pen-to-square"></i> Edit Category
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" action="" enctype="multipart/form-data">
+
+                                    <input type="hidden" name="old_image"
+                                        value="<?php echo $category_data['C_image']; ?>">
+
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">Category Name</label>
+                                        <input type="text" name="category_name" class="form-control"
+                                            value="<?php echo htmlspecialchars($category_data['C_name']); ?>" required>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">Description</label>
+                                        <textarea name="category_desc" class="form-control"
+                                            rows="4"><?php echo htmlspecialchars($category_data['C_description']); ?></textarea>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-4 text-center mb-3 mb-md-0">
+                                                <p class="mb-2 text-muted small">Current Image</p>
+                                                <?php
+                                                $img_src = !empty($category_data['C_image'])
+                                                    ? BASE_URL . "assets/uploads/categories/" . $category_data['C_image']
+                                                    : "https://via.placeholder.com/150?text=No+Image";
+                                                ?>
+                                                <img src="<?php echo $img_src; ?>" alt="Current Image"
+                                                    class="rounded border shadow-sm"
+                                                    style="width: 120px; height: 120px; object-fit: cover;">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label class="form-label fw-bold">Change Image (Optional)</label>
+                                                <input type="file" name="category_image" class="form-control">
+                                                <small class="text-muted d-block mt-1">Leave empty to keep current
+                                                    image.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" name="update_category" class="btn btn-primary px-4">
+                                            Update Data
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            
         </div>
     </div>
-</div>
-<!-- bootstrap js -->
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

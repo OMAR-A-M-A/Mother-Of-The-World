@@ -68,7 +68,7 @@ $result = mysqli_query($conn, $sql);
             <div class="container-fluid p-4">
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="text-dark">Governorates List</h2>
+                    <h2 class="text-secondary fw-bold">Governorates List</h2>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGovModal">
                         <i class="fa-solid fa-plus"></i> Add New Governorate
                     </button>

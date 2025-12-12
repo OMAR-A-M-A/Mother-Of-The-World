@@ -1,3 +1,19 @@
-.sidebar { width: 300px; min-height: 100vh; background-color: #1a1c23; color: #fff; }
-.sidebar .nav-link { color: #a0aec0; padding: 12px 20px; border-radius: 5px; margin-bottom: 5px; }
-.sidebar .nav-link:hover, .sidebar .nav-link.active { background-color: #2d3748; color: #fff; }
+.sidebar {
+    width: 300px;
+    min-height: 100vh;
+    background-color: #1a1c23;
+    color: #fff;
+}
+
+.sidebar .nav-link {
+    color: #a0aec0;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background-color: #2d3748;
+    color: #fff;
+}

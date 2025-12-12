@@ -12,7 +12,9 @@ CREATE TABLE governorates (
 
 CREATE TABLE categories (
     C_ID INT PRIMARY KEY AUTO_INCREMENT,
-    C_name VARCHAR(255)
+    C_name VARCHAR(255),
+    C_image VARCHAR(255),
+    C_description TEXT
 );
 
 CREATE TABLE places (
