@@ -8,11 +8,14 @@ CREATE TABLE governorates (
     G_ID INT PRIMARY KEY AUTO_INCREMENT,
     G_name VARCHAR(255),
     image_url VARCHAR(255)
+    G_description TEXT
 );
 
 CREATE TABLE categories (
     C_ID INT PRIMARY KEY AUTO_INCREMENT,
-    C_name VARCHAR(255)
+    C_name VARCHAR(255),
+    C_image VARCHAR(255),
+    C_description TEXT
 );
 
 CREATE TABLE places (
