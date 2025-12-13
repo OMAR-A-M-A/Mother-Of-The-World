@@ -2,13 +2,7 @@
 session_start();
 include '../../config.php';
 include '../../includes/db_connect.php';
-<<<<<<< HEAD
-include '../../config.php';
 // 2. Authentication Check
-=======
-
-// Authentication Check
->>>>>>> 45addfba6ae2dc8276b8bd81da8955151cb2e9f5
 if (!isset($_SESSION['admin_id'])) {
     header("Location: " . BASE_URL . "admin/index.php");
     exit();
@@ -46,11 +40,6 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Governorates</title>
-<<<<<<< HEAD
-
-    <!-- bootstrap css -->
-=======
->>>>>>> 45addfba6ae2dc8276b8bd81da8955151cb2e9f5
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">

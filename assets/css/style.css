@@ -1,9 +1,9 @@
 :root {
     /* --- Brand & Interactive Colors --- */
     --primary-brand: #428bca; /* Main theme color used for links, headings, and primary buttons */
-    --secondary-accent: #ffa127; /* Highlight color for star ratings, price tags, and special badges */
-    --icon-highlight: #ffcf2a; /* Specific color for decorative icons (like phone or location icons) */
-    --action-button: #e78c2f; /* Color for call-to-action buttons or alert elements */
+    --secondary-accent: #f97150; /* Highlight color for star ratings, price tags, and special badges */
+    --icon-highlight: #e66836; /* Specific color for decorative icons (like phone or location icons) */
+    --action-button: #e85e34; /* Color for call-to-action buttons or alert elements */
 
     /* --- Typography Colors --- */
     --text-body: #545454; /* Default color for paragraphs and main content text */
@@ -12,7 +12,7 @@
     --text-white: #ffffff;/* Text color for buttons or sections with dark backgrounds */
 
     /* --- Background Colors --- */
-    --bg-dark-section: #373737; /* Background for the footer, sidebar, or dark mode areas */
+    --bg-dark-section: #222222; /* Background for the footer, sidebar, or dark mode areas */
     --bg-light-gray: #f3f3f3; /* Background for alternating sections to separate content */
     --bg-white: #ffffff; /* Background for content cards, white sections, and containers */
 }
@@ -21,4 +21,126 @@
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+}
+/* General Footer Styling */
+.site-footer {
+    background-color: #1a1a1a; 
+    color: #ffffff; 
+    padding: 50px 0 0; 
+    font-family: Arial, sans-serif;
+}
+
+/* Main Content Container */
+.footer-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    justify-content: center;
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px 40px;  
+}
+
+/* Footer Column Styling */
+.footer-column {
+    flex: 1; 
+    padding-right: 30px;
+    min-width: 200px; 
+}
+
+/* Column Titles Styling */
+.column-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--text-white); 
+}
+
+/* Call Us Section Specific Styling */
+.contact-us .contact-info {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.contact-us .email-title {
+    color: var(--action-button); 
+    margin-bottom: 15px;
+    margin-top: 0px; 
+}
+
+/* List Styling (About Us and Support) */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+.footer-column ul li a {
+    color: var(--text-muted); 
+    text-decoration: none;
+    transition: color 0.5s;
+}
+.footer-column ul li a:hover {
+    color: var(--action-button); 
+}
+/* Copyright and Social Links Bar */
+.footer-bottom {
+    background-color: #0d0d0d; 
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    max-width: 100%; 
+    margin: 0 auto;
+    border-top: 1px solid #333333;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 17px;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+}
+
+.social-links a {
+    color: #ffffff;
+    font-size: 12px;
+    margin-left: 8px;
+    transition: color 0.3s;
+}
+/* ** Responsive Design (Media Queries) ** */
+@media (max-width: 992px) {
+    .footer-content {
+        flex-wrap: wrap; 
+    }
+    .footer-column {
+        flex: 1 1 50%; 
+        margin-bottom: 30px;
+        padding-right: 20px;
+    }
+    .payment-security {
+        order: 4; 
+    }
+    .footer-bottom {
+        flex-direction: column; 
+        text-align: center;
+    }
+    .footer-bottom p {
+        margin-bottom: 10px;
+    }
+    .social-links {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-column {
+        flex: 1 1 100%; 
+    }
 }
