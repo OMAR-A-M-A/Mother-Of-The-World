@@ -5,7 +5,7 @@ session_start();
 include '../config.php';
 
 // 2. Include Database Connection
-include '../includes/db_connect.php';
+include "../includes/db_connect.php";
 
 // Check if admin is logged in
 if (!isset($_SESSION['admin_id'])) {
@@ -30,6 +30,8 @@ $queries = [
     'Total Admins' => "SELECT COUNT(ID) AS count FROM admins",
 ];
 
+
+// Mapping for icons and background colors
 $icon_mapping = [
     'Total Governorates' => ['icon' => 'fa-city', 'bg_color' => 'bg-primary'],
     'Total Categories' => ['icon' => 'fa-list-ul', 'bg_color' => 'bg-info'],
@@ -95,8 +97,10 @@ if ($result_places) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V-Dashboard - Dynamic Admin</title>
 
-    <link href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
 
     <style>
         body {
@@ -133,14 +137,18 @@ if ($result_places) {
         * {
             box-sizing: border-box;
         }
+
     </style>
 </head>
 
 <body>
 
-    <div class="d-flex">
-
-        <?php include 'includes/sidebar.php'; ?>
+<div class="d-flex">
+    
+    <?php
+    // Include sidebar navigation
+    include 'includes/sidebar.php';
+    ?>
 
         <div class="w-100 d-flex flex-column">
 
@@ -242,12 +250,12 @@ if ($result_places) {
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
 
-    <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
+    </div>
+</div>
+<!-- bootstrap js -->
+<script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

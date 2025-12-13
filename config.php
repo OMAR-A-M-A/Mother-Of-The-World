@@ -1,4 +1,8 @@
 <?php
 // config.php
-define('BASE_URL', 'http://localhost/mother-of-the-world/');
+
+// Check if BASE_URL is NOT already defined before defining it
+if (!defined('BASE_URL')) {
+    define('BASE_URL', 'http://localhost/mother-of-the-world/');
+}
 ?>

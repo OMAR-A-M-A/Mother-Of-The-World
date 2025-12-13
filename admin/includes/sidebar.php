@@ -12,8 +12,8 @@
             <a href="<?php echo BASE_URL; ?>admin/dashboard.php" class="nav-link "><i class="fa-solid fa-chart-pie me-2"></i> Dashboard</a>
         </li>
         <li><a href="<?php echo BASE_URL; ?>admin/governorats/manage_gov.php" class="nav-link"><i class="fa-solid fa-city me-2"></i> Governorates</a></li>
-        <li><a href="" class="nav-link"><i class="fa-solid fa-tag me-2"></i> Categories</a></li>
-        <li><a href="<?php echo BASE_URL; ?>admin/places/manage_places.php" class="nav-link"><i class="fa-solid fa-users me-2"></i> Places</a></li>
-        <li><a href="" class="nav-link"><i class="fa-solid fa-images me-2"></i> Place Images</a></li>
+        <li><a href="<?php echo BASE_URL; ?>admin/places/manage_places.php" class="nav-link"><i class="fa-solid fa-images me-2"></i> Places</a></li>
+        <li><a href="<?php echo BASE_URL; ?>admin/category/manage_category.php" class="nav-link"><i class="fa-solid fa-tag me-2"></i> Categories</a></li>
     </ul>
 </div>
+

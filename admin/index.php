@@ -1,6 +1,11 @@
 <?php
 session_start();
+// 1. Include Configuration File (Crucial for BASE_URL)
+include '../config.php';
+
+// 2. Include Database Connection
 include '../includes/db_connect.php'; 
+
 // Check if user is already logged in -> Redirect to Dashboard directly
 if (isset($_SESSION['admin_id'])) {
     header("Location: dashboard.php");
@@ -49,14 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
     <!-- font awesome -->
-    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
     <!-- costum css -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style.css">
     <style>
     body {
-        background-image: url('../assets/images/login.jpg');
+        background-image: url('<?php echo BASE_URL; ?>assets/images/login.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -117,12 +122,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
 
             <div class="text-center mt-4">
-                <a href="../index.php" class="text-decoration-none text-muted website">Back to Website</a>
+                <a href="<?php echo BASE_URL; ?>index.php" class="text-decoration-none text-muted website">Back to Website</a>
             </div>
         </div>
     </section>
     <!-- bootstrap js -->
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

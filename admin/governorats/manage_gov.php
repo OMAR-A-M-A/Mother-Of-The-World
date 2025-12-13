@@ -1,9 +1,7 @@
 <?php
 session_start();
-
-// 1. Include Config & DB Connection
-// We go back 2 levels because we are in 'admin/governorates/'
 include '../../config.php';
+
 include '../../includes/db_connect.php';
 
 // 2. Authentication Check
