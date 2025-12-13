@@ -4,7 +4,9 @@
     --secondary-accent: #ffa127; /* Highlight color for star ratings, price tags, and special badges */
     --icon-highlight: #ffcf2a; /* Specific color for decorative icons (like phone or location icons) */
     --action-button: #e78c2f; /* Color for call-to-action buttons or alert elements */
-
+    --nav-link-color: #9fa4ad;/* Color specific to the menu links in image */
+    --logo-dark: #3e4c5e;
+    --primary-orange: #ff7b5f;
     /* --- Typography Colors --- */
     --text-body: #545454; /* Default color for paragraphs and main content text */
     --text-muted: #8d929b; /* Color for subtitles, dates, breadcrumbs, and meta information */
@@ -15,10 +17,61 @@
     --bg-dark-section: #373737; /* Background for the footer, sidebar, or dark mode areas */
     --bg-light-gray: #f3f3f3; /* Background for alternating sections to separate content */
     --bg-white: #ffffff; /* Background for content cards, white sections, and containers */
+    --overlay-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
 }
-*{
+@font-face {
+    font-family: "roboto";
+    src: url(../fonts/Roboto-VariableFont_wdth\,wght.ttf);
+    font-style: normal;
+}
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    font-family:"roboto";
+}
+/*? ----------------------- navbar style ----------------------- */
+.navbar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow */
+}
+.logo-text {
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    color: var(--logo-dark);
+}
+
+.text-travel {
+    font-weight: 700;
+}
+
+.text-tour {
+    font-weight: 300;
+}
+
+/* --- Navigation Links Styling --- */
+.navbar-nav .nav-item {
+    margin: 0 10px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--nav-link-color);
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    transition: 0.5s ;
+    border-bottom: 3px solid transparent;
+}
+
+/* Active State (The line under HOME) */
+.navbar-nav .nav-link.active
+,.navbar-nav .nav-link:hover {
+    color: var(--logo-dark);
+    border-bottom-color: #e1e1e1;
 }
