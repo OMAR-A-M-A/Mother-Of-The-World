@@ -4,7 +4,6 @@ if (!$conn) {
     die("DB not connected");
 }
 
-
 $query = "SELECT * FROM governorates";
 $result = $conn->query($query);
 ?>
@@ -18,7 +17,13 @@ $result = $conn->query($query);
 </head>
 <body>
 
-<h1 class="page-title">Egypt Governorates</h1>
+
+<!-- Header Image with Page Title -->
+<div class="header-image">
+    <img src="assets/images/hero.jpg" alt="Hurghada" class="header-img">
+    <h1 class="page-title">Egypt Governorates</h1>
+</div>
+
 
 <div class="cards-container">
     <?php while($row = mysqli_fetch_assoc($result)) { ?>
@@ -37,7 +42,6 @@ $result = $conn->query($query);
         </div>
     <?php } ?>
 </div>
-
 
 </body>
 </html>
