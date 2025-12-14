@@ -30,7 +30,6 @@ $queries = [
     'Total Admins' => "SELECT COUNT(ID) AS count FROM admins",
 ];
 
-
 // Mapping for icons and background colors
 $icon_mapping = [
     'Total Governorates' => ['icon' => 'fa-city', 'bg_color' => 'bg-primary'],
@@ -95,19 +94,14 @@ if ($result_places) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Dashboard - Dynamic Admin</title>
+    <title>Admin-Dashboard</title>
+    <link rel="icon" href="<?php echo BASE_URL; ?>assets/images/motw-logo.png" type="image/x-icon">
 
-    <!-- bootstrap css -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-        }
-
+        /* Only keep dashboard specific styles, removed body font-family to match sidebar */
         .icon-box {
             width: 50px;
             height: 50px;
@@ -119,14 +113,6 @@ if ($result_places) {
             font-size: 1.2rem;
         }
 
-        .badge-active {
-            background-color: #d1fae5;
-            color: #065f46;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
         .table-img {
             width: 40px;
             height: 40px;
@@ -134,32 +120,34 @@ if ($result_places) {
             border-radius: 5px;
         }
 
-        * {
-            box-sizing: border-box;
+        .btn-action {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-
     </style>
 </head>
 
 <body>
 
-<div class="d-flex">
-    
-    <?php
-    // Include sidebar navigation
-    include 'includes/sidebar.php';
-    ?>
+    <div class="d-flex">
 
-        <div class="w-100 d-flex flex-column">
+        <?php include 'includes/sidebar.php'; ?>
+
+        <div class="flex-grow-1 bg-light">
 
             <?php include 'includes/navbar.php'; ?>
 
-            <div class="container-fluid p-4 bg-light h-100">
+            <div class="container-fluid p-4">
+
                 <h3 class="mb-4 text-secondary fw-bold">Dashboard Overview</h3>
 
                 <div class="row g-4 mb-4">
                     <?php foreach ($stats as $stat): ?>
-                        <div class="col-6">
+                        <div class=" col-6">
                             <div class="card border-0 shadow-sm h-100">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="icon-box <?php echo $stat['bg_color']; ?> me-3">
@@ -167,7 +155,7 @@ if ($result_places) {
                                     </div>
                                     <div>
                                         <h4 class="fw-bold mb-0"><?php echo $stat['count']; ?></h4>
-                                        <span class="text-muted"><?php echo $stat['title']; ?></span>
+                                        <span class="text-muted small"><?php echo $stat['title']; ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -175,9 +163,10 @@ if ($result_places) {
                     <?php endforeach; ?>
                 </div>
 
-                <h3 class="mb-3 mt-5 text-secondary fw-bold">Recent Places</h3>
-
-                <div class="card border-0 shadow-sm">
+                <div class="card border-0 shadow-sm mt-5">
+                    <div class="card-header bg-white fw-bold py-3">
+                        <i class="fa-solid fa-clock-rotate-left me-2 text-secondary"></i> Recent Places
+                    </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-hover align-middle mb-0">
@@ -193,56 +182,66 @@ if ($result_places) {
                                         </th>
                                         <th class="py-3 text-secondary text-uppercase" style="font-size:0.8rem">Price
                                         </th>
-                                        <th class="text-end pe-4">Actions</th>
+                                        <th class="text-end pe-4 text-secondary text-uppercase"
+                                            style="font-size:0.8rem">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if (count($places) > 0): ?>
-                                        <?php $i=1; ?>
+                                        <?php $i = 1; ?>
                                         <?php foreach ($places as $place): ?>
                                             <tr>
                                                 <td class="ps-4 py-3">
                                                     <div class="d-flex align-items-center">
                                                         <?php
-                                                        // --- Image Path Logic ---
-                                                        // If database has an image name, append it to BASE_URL and places folder path
                                                         if (!empty($place['main_image'])) {
                                                             $image_src = BASE_URL . 'assets/uploads/places/' . htmlspecialchars($place['main_image']);
                                                         } else {
-                                                            // Fallback placeholder if no image exists
                                                             $image_src = 'https://via.placeholder.com/40x40?text=P';
                                                         }
                                                         ?>
                                                         <img src="<?php echo $image_src; ?>" class="table-img me-3"
                                                             alt="Place Image">
-                                                        <div class="text-muted small">
-                                                            #<?php echo $i ?></div>
+                                                        <div class="text-muted small">#<?php echo $place['P_ID']; ?></div>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="fw-bold text-dark">
                                                         <?php echo htmlspecialchars($place['p_name']); ?></div>
                                                 </td>
-                                                <td><span
-                                                        class="badge bg-primary-subtle text-primary"><?php echo htmlspecialchars($place['governorate_name'] ?? 'N/A'); ?></span>
+                                                <td>
+                                                    <span class="badge bg-primary-subtle text-primary">
+                                                        <?php echo htmlspecialchars($place['governorate_name'] ?? 'N/A'); ?>
+                                                    </span>
                                                 </td>
-                                                <td><span
-                                                        class="badge bg-secondary-subtle text-secondary"><?php echo htmlspecialchars($place['category_name'] ?? 'N/A'); ?></span>
+                                                <td>
+                                                    <span class="badge bg-secondary-subtle text-secondary">
+                                                        <?php echo htmlspecialchars($place['category_name'] ?? 'N/A'); ?>
+                                                    </span>
                                                 </td>
                                                 <td>
                                                     <div class="fw-normal">
                                                         <?php echo number_format($place['ticket_price'], 2) . ' EGP'; ?></div>
                                                 </td>
                                                 <td class="text-end pe-4">
-                                                    <a href="#" class="text-primary text-decoration-none fw-bold me-2">Edit</a>
-                                                    <a href="#" class="text-danger text-decoration-none fw-bold">Delete</a>
+                                                    <a href="<?php echo BASE_URL; ?>admin/places/edit_place.php?id=<?php echo $place['P_ID']; ?>"
+                                                        class="btn btn-sm btn-outline-success btn-action me-1" title="Edit">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </a>
+
+                                                    <a href="<?php echo BASE_URL; ?>admin/places/manage_places.php?delete_id=<?php echo $place['P_ID']; ?>"
+                                                        class="btn btn-sm btn-outline-danger btn-action"
+                                                        onclick="return confirm('Are you sure you want to delete this place?');"
+                                                        title="Delete">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
-                                        <?php $i++ ;endforeach; ?>
+                                            <?php $i++; endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="6" class="text-center py-4 text-muted">No places currently added in
-                                                the database.</td>
+                                            <td colspan="6" class="text-center py-4 text-muted">No places currently added.
+                                            </td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -250,12 +249,12 @@ if ($result_places) {
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+        </div>
     </div>
-</div>
-<!-- bootstrap js -->
-<script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

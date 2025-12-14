@@ -56,7 +56,7 @@ $result = mysqli_query($conn, $sql);
             <div class="container-fluid p-4">
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="text-dark">Places List</h2>
+                    <h2 class="text-secondary fw-bold">Places List</h2>
                     <a href="add_place.php" class="btn btn-primary">
                         <i class="fa-solid fa-plus"></i> Add New Place
                     </a>

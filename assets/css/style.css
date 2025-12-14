@@ -1,41 +1,77 @@
 :root {
-    /* Primary Brand Colors */
-    --primary-blue: #5494ec;
-    /* Main brand color, used for headers, primary buttons, and links */
-    --accent-orange: #ffa00a;
-    /* Accent color, often used for prices, rating stars, and call-to-action highlights */
+    /* --- Brand & Interactive Colors --- */
+    --primary-brand: #428bca; /* Main theme color used for links, headings, and primary buttons */
+    --secondary-accent: #ffa127; /* Highlight color for star ratings, price tags, and special badges */
+    --icon-highlight: #ffcf2a; /* Specific color for decorative icons (like phone or location icons) */
+    --action-button: #e78c2f; /* Color for call-to-action buttons or alert elements */
+    --nav-link-color: #9fa4ad;/* Color specific to the menu links in image */
+    --logo-dark: #3e4c5e;
+    --primary-orange: #ff7b5f;
+    /* --- Typography Colors --- */
+    --text-body: #545454; /* Default color for paragraphs and main content text */
+    --text-muted: #8d929b; /* Color for subtitles, dates, breadcrumbs, and meta information */
+    --text-on-dark: #c9e2ff; /* Light text color used specifically on dark backgrounds (like the footer) */
+    --text-white: #ffffff;/* Text color for buttons or sections with dark backgrounds */
 
-    /* Text Colors */
-    --text-main: #383838;
-    /* Dark grey for main body text and paragraph content */
-    --text-heading: #1a1a1a;
-    /* Darker shade for headings (H1-H6) and strong titles */
-    --text-light: #8f8f8f;
-    /* Light grey for metadata, dates, and secondary descriptions */
-    --text-white: #ffffff;
-    /* White text for dark backgrounds (e.g., footer, overlay banners) */
-
-    /* Background Colors */
-    --bg-white: #ffffff;
-    /* Standard white background for content areas */
-    --bg-light-grey: #f3f3f3;
-    /* Light grey background for alternate sections or form fields */
-    --bg-footer: #212121;
-    /* Dark background for the footer section */
-    --bg-overlay: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent black for image overlays */
-
-    /* UI Elements & Borders */
-    --border-color: #e6e6e6;
-    /* Light grey for borders, dividers, and card outlines */
-    --icon-color: #333333;
-    /* Standard color for iconography */
-    --success-green: #5bc0de;
-    /* Often used for success messages or info alerts */
+    /* --- Background Colors --- */
+    --bg-dark-section: #373737; /* Background for the footer, sidebar, or dark mode areas */
+    --bg-light-gray: #f3f3f3; /* Background for alternating sections to separate content */
+    --bg-white: #ffffff; /* Background for content cards, white sections, and containers */
+    --overlay-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
 }
-*{
+@font-face {
+    font-family: "roboto";
+    src: url(../fonts/Roboto-VariableFont_wdth\,wght.ttf);
+    font-style: normal;
+}
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    font-family:"roboto";
+}
+/*? ----------------------- navbar style ----------------------- */
+.navbar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow */
+}
+.logo-text {
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    color: var(--logo-dark);
+}
+
+.text-travel {
+    font-weight: 700;
+}
+
+.text-tour {
+    font-weight: 300;
+}
+
+/* --- Navigation Links Styling --- */
+.navbar-nav .nav-item {
+    margin: 0 10px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--nav-link-color);
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    transition: 0.5s ;
+    border-bottom: 3px solid transparent;
+}
+
+/* Active State (The line under HOME) */
+.navbar-nav .nav-link.active
+,.navbar-nav .nav-link:hover {
+    color: var(--logo-dark);
+    border-bottom-color: #e1e1e1;
 }

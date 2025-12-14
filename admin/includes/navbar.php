@@ -5,13 +5,24 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $display_name = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin';
 ?>
-<nav class="navbar navbar-light bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center">
 
-        <h5 class="mb-0 text-dark me-2">
+<head>
+    <style>
+        .welcome-div {
+            /* border: 1px solid #000; */
+            padding: 8px;
+            border-radius: 5px;
+            background-color: #1a1c23;
+            color:#ffa00a;
+        }
+    </style>
+</head>
+<nav class="navbar navbar-light bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center welcome-div">
+        <h5 class="mb-0 text-light me-2">
             Welcome,
         </h5>
-        <span class="text-primary fs-5">
+        <span class="text-capitalize fs-5" >
             <?php echo $display_name; ?>
         </span>
     </div>
