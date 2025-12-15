@@ -15,6 +15,8 @@
     --bg-dark-section: #222222; /* Background for the footer, sidebar, or dark mode areas */
     --bg-light-gray: #f3f3f3; /* Background for alternating sections to separate content */
     --bg-white: #ffffff; /* Background for content cards, white sections, and containers */
+
+    --padding-section: 60px; /* Standard padding for sections to ensure consistent spacing */
 }
 *{
     box-sizing: border-box;

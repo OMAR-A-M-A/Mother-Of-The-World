@@ -1,27 +1,3 @@
-:root {
-    /* --- Brand & Interactive Colors --- */
-    --primary-brand: #428bca; /* Main theme color used for links, headings, and primary buttons */
-    --secondary-accent: #f97150; /* Highlight color for star ratings, price tags, and special badges */
-    --icon-highlight: #e66836; /* Specific color for decorative icons (like phone or location icons) */
-    --action-button: #e85e34; /* Color for call-to-action buttons or alert elements */
-
-    /* --- Typography Colors --- */
-    --text-body: #545454; /* Default color for paragraphs and main content text */
-    --text-muted: #8d929b; /* Color for subtitles, dates, breadcrumbs, and meta information */
-    --text-on-dark: #c9e2ff; /* Light text color used specifically on dark backgrounds (like the footer) */
-    --text-white: #ffffff;/* Text color for buttons or sections with dark backgrounds */
-
-    /* --- Background Colors --- */
-    --bg-dark-section: #222222; /* Background for the footer, sidebar, or dark mode areas */
-    --bg-light-gray: #f3f3f3; /* Background for alternating sections to separate content */
-    --bg-white: #ffffff; /* Background for content cards, white sections, and containers */
-}
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-}
 /* start main componant */
 .spacial-heading{
     font-size:100px;
@@ -69,7 +45,7 @@
     margin-left: 23px;
 }
 .my_card::before{
-    content: "3 tours";
+    content: attr(data-places) " Places" !important;
     position: absolute;
     color: #fff;
     background-color: var(--secondary-accent);
