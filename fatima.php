@@ -3,20 +3,7 @@ include 'includes/db_connect.php';
 
 //FetchCategories for Display
 $categories = [];
-$fetch_sql = "
-    SELECT 
-        c.*, 
-        COUNT(p.P_ID) AS places_count 
-    FROM 
-        categories c
-    LEFT JOIN 
-        places p ON c.C_ID = p.C_num 
-    GROUP BY 
-        c.C_ID
-    ORDER BY 
-        c.C_ID DESC 
-    LIMIT 3
-";
+$fetch_sql = "SELECT * FROM categories ORDER BY C_ID DESC LIMIT 3";
 $result = $conn->query($fetch_sql);
 
 if ($result) {
@@ -53,8 +40,7 @@ if ($result) {
          <div class="cards row">
              <?php if (!empty($categories)) { ?>
                  <?php foreach ($categories as $category) { ?>
-                     <div class="card text-white col-md-4 p-0 overflow-hidden shadow-sm position-relative my_card"
-                      data-places="<?php echo $category['places_count']; ?>">
+                     <div class="card text-white col-md-4 p-0 overflow-hidden shadow-sm position-relative my_card">
                          <img 
                             class="card-img h-100 w-100 object-cover"
                              src="<?php echo BASE_URL; ?>assets/uploads/categories/<?php echo $category['C_image']; ?>" 
