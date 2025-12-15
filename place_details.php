@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>
-        here is the place details (place, image, details, gov, price, category)
-    </h1>
+       singer 
+   </h1>
 </body>
 </html>
