@@ -38,7 +38,6 @@ if ($selected_gov_id > 0) {
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/category.css">
     <link rel="stylesheet" href="assets/css/gov-details.css">
 </head>
 <body>

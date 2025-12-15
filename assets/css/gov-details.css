@@ -1,51 +1,3 @@
-.page-hero {
-    position: relative;
-    background-image: url('../uploads/governorates/photo-1469854523086-cc02fe5d8800.avif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 50vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--text-white);
-    margin-bottom: 60px;
-}
-
-.page-hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--overlay-color);
-    z-index: 1;
-}
-
-.page-hero .container {
-    position: relative;
-    z-index: 2;
-    margin-bottom: 50px;
-}
-
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
 .category-hero {
     position: relative;
     height: 50vh;
@@ -338,14 +290,17 @@
     -webkit-box-orient: vertical;
 }
 
-
-.section-title:not(:first-child) {
+.section-title-description,
+.section-title {
     color: var(--logo-dark);
     position: relative;
     padding-bottom: 10px;
     margin-bottom: 40px;
     font-size: 2rem;
     font-weight: 700;
+}
+.section-title-description{
+    margin-bottom: 20px;
 }
 
 .section-title::after {
@@ -388,15 +343,6 @@
 }
 
 @media (max-width: 768px) {
-    .hero-title,
-    .category-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-        padding: 0 15px;
-    }
     
     .category-card,
     .place-card {
