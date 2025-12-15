@@ -1,0 +1,194 @@
+:root {
+    /* --- Brand & Interactive Colors --- */
+    --primary-brand: #428bca; /* Main theme color used for links, headings, and primary buttons */
+    --secondary-accent: #f97150; /* Highlight color for star ratings, price tags, and special badges */
+    --icon-highlight: #e66836; /* Specific color for decorative icons (like phone or location icons) */
+    --action-button: #e85e34; /* Color for call-to-action buttons or alert elements */
+
+    /* --- Typography Colors --- */
+    --text-body: #545454; /* Default color for paragraphs and main content text */
+    --text-muted: #8d929b; /* Color for subtitles, dates, breadcrumbs, and meta information */
+    --text-on-dark: #c9e2ff; /* Light text color used specifically on dark backgrounds (like the footer) */
+    --text-white: #ffffff;/* Text color for buttons or sections with dark backgrounds */
+
+    /* --- Background Colors --- */
+    --bg-dark-section: #222222; /* Background for the footer, sidebar, or dark mode areas */
+    --bg-light-gray: #f3f3f3; /* Background for alternating sections to separate content */
+    --bg-white: #ffffff; /* Background for content cards, white sections, and containers */
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+/* start main componant */
+.spacial-heading{
+    font-size:100px;
+    font-weight: 800;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -3px;
+    color: #ebeced;
+    text-transform: uppercase;
+}
+.spacial-heading + p{
+    margin: -120px 0 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-body);
+}
+.main_heading{
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    color: var(--text-body);
+    margin-bottom: 20px;
+    text-align: center;
+}
+.main_link{
+    display: block;
+    text-decoration: none;
+    color: var(--icon-highlight);
+    padding-top: 15px;
+}
+/* end main componant */
+
+/*start cat section */
+.cat{
+    padding: var(--padding-section) 0;
+}
+.cat .cards{
+    gap:10px;
+    padding-top: 25px;
+}
+.my_card{
+    height: 300px;
+    width: 300px;
+    margin-left: 23px;
+}
+.my_card::before{
+    content: "3 tours";
+    position: absolute;
+    color: #fff;
+    background-color: var(--secondary-accent);
+    top: 18px;
+    right: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 3px;
+    z-index: 5;
+}
+.cat .content{
+    z-index: 2;
+    top: 64%;
+}
+.my_card:hover .content {
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 0;
+    transition: 200ms ease-out, padding 200ms ease-out;
+}
+.content h5 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom:26px;
+}
+.content a{
+    text-decoration: none;
+    color: var(--secondary-accent);
+    font-weight: 700;
+}
+/*end cat section */
+
+/* start newsletter section */
+.newsletter{
+    margin-bottom: 50px;
+}
+.newsletter .content{
+    background-color: #fd8961;
+    color: #ffffff;
+}
+.newsletter .content p{
+    font-size: 20px;
+    font-weight: 700;
+    color: #fed7c8;
+    margin: 0 0 10px 0;
+}
+.newsletter .content h3{
+    font-size: 31px;
+    font-weight: 700;
+    letter-spacing: 0px;
+}
+.newsletter .content .butn{
+    background-color: #1e354c;
+    color: var(--text-white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 25px 0;
+}
+/* end newsletter section */
+/* start testimonial section */
+.testimonial-section {
+    padding-top: var(--padding-section);
+    padding-bottom: var(--padding-section);
+}
+.testimonial-section .cards {
+    padding-top: 70px; 
+}
+.testimonial-section .spacial-heading + p{
+    margin-top: -105px;
+}
+.testimonial-card {
+    background-color: var(--secondary-accent);
+    color: var(--text-white);
+    padding: 2.5rem 2rem;
+    border-radius: 5px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%; 
+}
+.quote-icon {
+    font-size: 35px; 
+    font-weight: 600;
+    line-height: 0.5;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+.testimonial-text {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+.profile-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 3px solid var(--text-white);
+}
+.name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+.role {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.stars i {
+    color: var(--bg-white);
+    font-size: 1.1rem;
+}
+.pagination-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+    transition: background-color 0.3s;
+}
+.pagination-dot.active-dot {
+    background-color: var(--secondary-accent);
+}
+/* end testimonial section */
