@@ -150,7 +150,7 @@ $places_result = $conn->query($places_query);
                                         ?>
                                     </p>
 
-                                    <a href="place_details.php?id=<?php echo $row['p_ID']; ?>" class="btn-teal-custom">
+                                    <a href="place_details.php?id=<?php echo $place['P_ID']; ?>" class="btn-teal-custom">
                                         View Details
                                     </a>
                                 </div>

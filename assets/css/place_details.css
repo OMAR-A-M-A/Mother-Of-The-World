@@ -1,0 +1,116 @@
+.details-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+        }
+        .details-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--text-white);
+            padding-bottom: 3rem;
+            width: 100%;
+        }
+        .place-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .info-badge {
+            background-color: var(--primary-brand);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .info-badge i { margin-right: 5px; }
+        
+        .price-tag {
+            background-color: var(--secondary-accent);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section-header {
+            color: var(--primary-brand);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Gallery Styling */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Info Card */
+        .info-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-brand);
+        }
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: var(--text-body);
+        }
+        .info-icon {
+            width: 30px;
+            color: var(--icon-highlight);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        .lead{
+            width:100%;
+            max-width: 800px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
