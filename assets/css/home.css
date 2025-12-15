@@ -13,7 +13,6 @@
     text-align: center;
     color: var(--text-white);
 }
-
 .hero-section::before {
     content: "";
     position: absolute;
@@ -24,19 +23,16 @@
     background-color: var(--overlay-color);
     z-index: 1;
 }
-
 .hero-content {
     position: relative;
     z-index: 2;
     margin-bottom: 50px;
 }
-
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 10px;
 }
-
 .hero-subtitle {
     font-size: 1.2rem;
     font-weight: 400;
@@ -49,7 +45,6 @@
     margin-top: -70px;
     padding-bottom: 50px;
 }
-
 .info-bar {
     background: linear-gradient(to bottom , var(--primary-orange) 60%, var(--secondary-accent));
     color: var(--text-white);
@@ -58,7 +53,6 @@
     width: 60%;
     margin: auto;
 }
-
 /* Feature Item Styling */
 .feature-item {
     display: flex;
@@ -66,12 +60,10 @@
     gap: 15px;
     padding: 0 15px;
 }
-
 .feature-icon i {
     font-size: 40px;
 
 }
-
 .feature-text h5 {
     font-size: 1.1rem;
     font-weight: 700;
@@ -79,11 +71,237 @@
     letter-spacing: 1px;
     margin-bottom: 8px;
 }
-
 .feature-text p {
     font-size: 0.9rem;
     font-weight: 500;
     line-height: 1.6;
     opacity: 0.9;
     margin: 0;
+}
+/* ? ----------- gov section --------- */
+.popular-gov {
+    background-color: var(--bg-white);
+}
+/* .section-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--logo-dark);
+    margin-bottom: 10px;
+}
+.view-all-link {
+    font-size: 0.9rem;
+    color: var(--primary-orange);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.view-all-link:hover {
+    color: var(--action-button);
+} */
+/* Card Container */
+.gov-card {
+    position: relative;
+    height: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+/* Image Handling & Zoom Effect */
+.gov-card .image-wrapper {
+    width: 100%;
+    height: 100%;
+}
+.gov-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.gov-card:hover img {
+    transform: scale(1.1);
+}
+.gov-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%);
+    z-index: 1;
+}
+
+/* Content Styling */
+.gov-card .card-content {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    padding: 0 15px;
+}
+.gov-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.gov-link {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-orange);
+    text-decoration: none;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    transition: all 0.3s;
+}
+.gov-card:hover .gov-link {
+    opacity: 1;
+    color: #fff;
+}
+.tour-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-orange);
+    color: var(--text-white);
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    z-index: 3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/*? -------highlight-section------*/
+.video-highlight-section {
+    position: relative;
+    background-image: url('../images/hero-bg2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding: 120px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+}
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+.highlight-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.highlight-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-orange);
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+.play-btn-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--text-white);
+    border-radius: 50%;
+    color: var(--text-white);
+    font-size: 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding-left: 5px;
+}
+.play-btn-wrapper:hover {
+    background-color: var(--text-white);
+    color: var(--primary-orange);
+    transform: scale(1.1);
+}
+@media (max-width: 768px) {
+    .highlight-title {
+        font-size: 2rem;
+    }
+
+    .video-highlight-section {
+        background-attachment: scroll;
+    }
+}
+/*? --------places sections------- */
+.latest-places-section {
+    background-color: #f8f9fa;
+}
+.place-card-style {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.place-card-style:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+.place-img-top {
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+}
+.place-img-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.place-card-style:hover .place-img-top img {
+    transform: scale(1.05);
+}
+.place-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.place-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0d4d54;
+    margin-bottom: 15px;
+}
+.place-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+.btn-teal-custom {
+    display: inline-block;
+    background-color: #009688;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+}
+.btn-teal-custom:hover {
+    background-color: #00796b;
+    color: #fff;
 }
