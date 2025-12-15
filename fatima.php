@@ -17,13 +17,13 @@ $fetch_sql = "
         c.C_ID DESC 
     LIMIT 3
 ";
-$result = $conn->query($fetch_sql);
+$cat_result = $conn->query($fetch_sql);
 
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $categories[] = $row;
+if ($cat_result) {
+    while ($cat_row = $cat_result->fetch_assoc()) {
+        $categories[] = $cat_row;
     }
-    $result->free();
+    $cat_result->free();
 }
 ?>
 <!DOCTYPE html>
