@@ -22,7 +22,7 @@
                     <a class="nav-link" href="#">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tour Places</a>
+                    <a class="nav-link" href="<?php echo BASE_URL; ?>places.php">Tour Places</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Governorates</a>
