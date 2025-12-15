@@ -13,7 +13,7 @@ $result = $conn->query($query);
 <head>
     <meta charset="UTF-8">
     <title>Governorates</title>
-    <link rel="stylesheet" href="assets/css/gov.css?v=3">
+    <link rel="stylesheet" href="assets/css/gov.css?v=7">
 
 </head>
 <body>
@@ -21,8 +21,6 @@ $result = $conn->query($query);
 
 <!-- Header Image with Page Title -->
 <div class="header-image">
-    <img src="assets/images/Tourism-in-Cairo-.jpg" alt="Hurghada" class="header-img">
-    
     <h1 class="page-title">Egypt Governorates</h1>
     <p class="page-subtitle">
         Discover the magic of Egypt, where ancient history meets unforgettable natural beauty
