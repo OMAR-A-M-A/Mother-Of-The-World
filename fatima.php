@@ -53,8 +53,7 @@ if ($cat_result) {
          <div class="cards row">
              <?php if (!empty($categories)) { ?>
                  <?php foreach ($categories as $category) { ?>
-                     <div class="card text-white col-md-4 p-0 overflow-hidden shadow-sm position-relative my_card"
-                      data-places="<?php echo $category['places_count']; ?>">
+                     <div class="card text-white col-md-4 p-0 overflow-hidden shadow-sm position-relative my_card">
                          <img 
                             class="card-img h-100 w-100 object-cover"
                              src="<?php echo BASE_URL; ?>assets/uploads/categories/<?php echo $category['C_image']; ?>" 
