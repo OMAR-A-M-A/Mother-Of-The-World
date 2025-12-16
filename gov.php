@@ -1,5 +1,6 @@
 <?php
 include "includes/db_connect.php";
+include "config.php";
 if (!$conn) {
     die("DB not connected");
 }
@@ -21,7 +22,7 @@ $result = $conn->query($query);
 </head>
 <body>
 
-
+    <?php include 'includes/header.php'; ?>
 <!-- Header Image with Page Title -->
 <div class="header-image">    
     <h1 class="page-title">Egypt Governorates</h1>
@@ -29,9 +30,6 @@ $result = $conn->query($query);
         Discover the magic of Egypt, where ancient history meets unforgettable natural beauty
     </p>
 </div>
-
-
-
 <div class="cards-container">
     <?php while($row = mysqli_fetch_assoc($result)) { ?>
         <div class="card">
@@ -49,6 +47,6 @@ $result = $conn->query($query);
         </div>
     <?php } ?>
 </div>
-
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

@@ -43,10 +43,10 @@
     position: relative;
     z-index: 3;
     margin-top: -70px;
-    padding-bottom: 50px;
+    margin-bottom: var(--section-margin);
 }
 .info-bar {
-    background: linear-gradient(to bottom , var(--primary-orange) 60%, var(--secondary-accent));
+    background: linear-gradient(to bottom , var(--action-button) 40%, var(--secondary-accent));
     color: var(--text-white);
     padding: 50px 20px;
     border-radius: 20px;
@@ -81,23 +81,8 @@
 /* ? ----------- gov section --------- */
 .popular-gov {
     background-color: var(--bg-white);
+    margin-bottom: var(--section-margin);
 }
-/* .section-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--logo-dark);
-    margin-bottom: 10px;
-}
-.view-all-link {
-    font-size: 0.9rem;
-    color: var(--primary-orange);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-.view-all-link:hover {
-    color: var(--action-button);
-} */
 /* Card Container */
 .gov-card {
     position: relative;
@@ -152,7 +137,7 @@
     font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--primary-orange);
+    color: var(--secondary-accent);
     text-decoration: none;
     letter-spacing: 1px;
     opacity: 0.9;
@@ -166,7 +151,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: var(--primary-orange);
+    background-color: var(--secondary-accent);
     color: var(--text-white);
     padding: 5px 12px;
     font-size: 12px;
@@ -188,6 +173,7 @@
     align-items: center;
     justify-content: center;
     color: var(--text-white);
+    margin-bottom: var(--section-margin);
 }
 .video-overlay {
     position: absolute;
@@ -206,7 +192,7 @@
 .highlight-subtitle {
     font-size: 1.2rem;
     font-weight: 500;
-    color: var(--primary-orange);
+    color: var(--secondary-accent);
     margin-bottom: 40px;
     letter-spacing: 1px;
 }
@@ -226,7 +212,7 @@
 }
 .play-btn-wrapper:hover {
     background-color: var(--text-white);
-    color: var(--primary-orange);
+    color: var(--secondary-accent);
     transform: scale(1.1);
 }
 @media (max-width: 768px) {
@@ -240,7 +226,7 @@
 }
 /*? --------places sections------- */
 .latest-places-section {
-    background-color: #f8f9fa;
+    margin-bottom: var(--section-margin);
 }
 .place-card-style {
     background-color: #fff;
@@ -305,3 +291,164 @@
     background-color: #00796b;
     color: #fff;
 }
+/*? ----start cat section------ */
+.cat {
+        margin-bottom: var(--section-margin);
+}
+
+.cat .cards {
+    gap: 10px;
+    padding-top: 25px;
+}
+
+.my_card {
+    height: 400px;
+    width: 400px;
+    margin-left: 23px;
+}
+
+.my_card::before {
+    content: attr(data-count)" places";
+    position: absolute;
+    color: #fff;
+    background-color: var(--secondary-accent);
+    top: 18px;
+    right: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+.cat .content {
+    z-index: 2;
+    top: 73%;
+}
+
+.my_card:hover .content {
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 0;
+    transition: 200ms ease-out, padding 200ms ease-out;
+}
+
+.content h5 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 26px;
+}
+
+.content a {
+    text-decoration: none;
+    color: var(--secondary-accent);
+    font-weight: 700;
+}
+
+/*end cat section */
+
+/*? ---start newsletter section---- */
+.newsletter {
+        margin-bottom: var(--section-margin);
+}
+
+.newsletter .content {
+    background-color: #fd8961;
+    color: #ffffff;
+}
+
+.newsletter .content p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fed7c8;
+    margin: 0 0 10px 0;
+}
+
+.newsletter .content h3 {
+    font-size: 31px;
+    font-weight: 700;
+    letter-spacing: 0px;
+}
+
+.newsletter .content .butn {
+    background-color: #1e354c;
+    color: var(--text-white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 25px 0;
+}
+
+/* end newsletter section */
+/*? ---start testimonial section---- */
+.testimonial-section {
+        margin-bottom: var(--section-margin);
+}
+
+.testimonial-section .cards {
+    padding-top: 70px;
+}
+
+.testimonial-section .spacial-heading+p {
+    margin-top: -105px;
+}
+
+.testimonial-card {
+    background-color: var(--secondary-accent);
+    color: var(--text-white);
+    padding: 2.5rem 2rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.quote-icon {
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 0.5;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.testimonial-text {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.profile-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 3px solid var(--text-white);
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.role {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.stars i {
+    color: var(--bg-white);
+    font-size: 1.1rem;
+}
+
+.pagination-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+    transition: background-color 0.3s;
+}
+
+.pagination-dot.active-dot {
+    background-color: var(--secondary-accent);
+}
+
+/* end testimonial section */

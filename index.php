@@ -8,6 +8,30 @@ $result = $conn->query($query);
 $places_query = "SELECT * FROM places ORDER BY p_ID DESC LIMIT 3";
 $places_result = $conn->query($places_query);
 
+//FetchCategories for Display
+$categories = [];
+$fetch_sql = "
+    SELECT 
+        c.*, 
+        COUNT(p.P_ID) AS places_count 
+    FROM 
+        categories c
+    LEFT JOIN 
+        places p ON c.C_ID = p.C_num 
+    GROUP BY 
+        c.C_ID
+    ORDER BY 
+        c.C_ID DESC 
+    LIMIT 3
+";
+$cat_result = $conn->query($fetch_sql);
+
+if ($cat_result) {
+    while ($cat_row = $cat_result->fetch_assoc()) {
+        $categories[] = $cat_row;
+    }
+    $cat_result->free();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,12 +100,13 @@ $places_result = $conn->query($places_query);
             </div>
         </section>
         <!-- popular governorates -->
-        <section class="popular-gov py-5">
+        <section class="popular-gov">
             <div class="container">
                 <!-- change it with fatime code -->
                 <div class="section-header text-center mb-5">
-                    <h2 class="section-title">Popular governorates</h2>
-                    <a href="gov.php" class="view-all-link">
+                    <h2 class="spacial-heading">Governorates</h2>
+                    <p>Popular governorates</p>
+                    <a href="gov.php" class="main_link">
                         View All governorates <i class="fa-solid fa-arrow-right-long ms-2"></i>
                     </a>
                 </div>
@@ -125,12 +150,15 @@ $places_result = $conn->query($places_query);
             </div>
         </section>
         <!-- popular places -->
-        <section class="latest-places-section py-5">
+        <section class="latest-places-section">
             <div class="container">
 
                 <div class="section-header text-center mb-5">
-                    <h2 class="section-title">Latest Places to Visit</h2>
-                    <p class="text-muted">Discover the newest attractions added to our list</p>
+                    <h2 class="spacial-heading">Places</h2>
+                    <p>Popular Places</p>
+                    <a href="places.php" class="main_link">View All Places
+                        <i class="gdlr-core-pos-right fa fa-long-arrow-right" aria-hidden="true"></i>
+                    </a>
                 </div>
 
                 <div class="row g-4">
@@ -162,19 +190,38 @@ $places_result = $conn->query($places_query);
                 </div>
             </div>
         </section>
+        <!-- start newsletter section -->
+        <section class="newsletter container">
+            <div class="d-flex justify-content-center">
+                <div
+                    class="content d-flex flex-column justify-content-space-between align-items-center text-center w-50 p-5">
+                    <p>Enjoy Summer Deals</p>
+                    <h3>Up to 40% Discount!</h3>
+                    <a href="#" class="butn">LEARN MORE</a>
+                    <a href="<?php echo BASE_URL; ?>admin/dashboard.php"
+                        class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none px-2">
+                        <img src="<?php echo BASE_URL; ?>assets/images/motw-logo.png" alt="logo" width="35" class="m-2">
+                        <span class="fs-5 m-1">M-Dashboard</span>
+                    </a>
+                    <span>Terms applied</span>
+                </div>
+                <img src="assets/images/login.jpg" class="w-50 object-cover" alt="newsletter image">
+            </div>
+        </section>
+        <!-- end newsletter section -->
         <!-- start category section -->
         <section class="cat container">
             <h2 class="spacial-heading">Categories</h2>
             <p>Popular Categories</p>
             <div class="text-center mb-4">
-                <a href="#" class="main_link">View All Categories
+                <a href="category.php" class="main_link">View All Categories
                     <i class="gdlr-core-pos-right fa fa-long-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="cards row">
                 <?php if (!empty($categories)) { ?>
                     <?php foreach ($categories as $category) { ?>
-                        <div class="card text-white col-md-4 p-0 overflow-hidden shadow-sm position-relative my_card">
+                        <div class="card text-white col-md-4 p-0 overflow-hidden shadow-sm position-relative my_card" data-count=<?php echo $category['places_count'] ?>>
                             <img class="card-img h-100 w-100 object-cover"
                                 src="<?php echo BASE_URL; ?>assets/uploads/categories/<?php echo $category['C_image']; ?>">
                             <div
@@ -195,27 +242,8 @@ $places_result = $conn->query($places_query);
             </div>
         </section>
         <!-- end category section -->
-        <!-- start newsletter section -->
-        <section class="newsletter container">
-            <div class="d-flex justify-content-center">
-                <div
-                    class="content d-flex flex-column justify-content-space-between align-items-center text-center w-50 p-5">
-                    <p>Enjoy Summer Deals</p>
-                    <h3>Up to 40% Discount!</h3>
-                    <a href="#" class="butn">LEARN MORE</a>
-                    <a href="<?php echo BASE_URL; ?>admin/dashboard.php"
-                        class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none px-2">
-                        <img src="<?php echo BASE_URL; ?>assets/images/motw-logo.png" alt="logo" width="35" class="m-2">
-                        <span class="fs-5 m-1">M-Dashboard</span>
-                    </a>
-                    <span>Terms applied</span>
-                </div>
-                <img src="assets/images/login.jpg" class="w-50 object-cover" alt="newsletter image">
-            </div>
-        </section>
-        <!-- end newsletter section -->
         <!-- start testimonial section -->
-        <section class="testimonial-section py-5">
+        <section class="testimonial-section" id="about-us">
             <h2 class="spacial-heading">Testimonial</h2>
             <p>Customer Reviews</p>
             <div class="container cards">

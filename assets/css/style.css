@@ -1,12 +1,10 @@
 :root {
     /* --- Brand & Interactive Colors --- */
     --primary-brand: #428bca; /* Main theme color used for links, headings, and primary buttons */
-    --secondary-accent: #ffa127; /* Highlight color for star ratings, price tags, and special badges */
-    --icon-highlight: #ffcf2a; /* Specific color for decorative icons (like phone or location icons) */
-    --action-button: #e78c2f; /* Color for call-to-action buttons or alert elements */
-    --nav-link-color: #9fa4ad;/* Color specific to the menu links in image */
-    --logo-dark: #3e4c5e;
-    --primary-orange: #ff7b5f;
+    --secondary-accent: #f97150; /* Highlight color for star ratings, price tags, and special badges */
+    --icon-highlight: #e66836; /* Specific color for decorative icons (like phone or location icons) */
+    --action-button: #e85e34; /* Color for call-to-action buttons or alert elements */
+
     /* --- Typography Colors --- */
     --text-body: #545454; /* Default color for paragraphs and main content text */
     --text-muted: #8d929b; /* Color for subtitles, dates, breadcrumbs, and meta information */
@@ -16,8 +14,9 @@
     /* --- Background Colors --- */
     --bg-dark-section: #222222; /* Background for the footer, sidebar, or dark mode areas */
     --bg-light-gray: #f3f3f3; /* Background for alternating sections to separate content */
-    --bg-white: #ffffff; /* Background for content cards, white sections, and containers */
+    --bg-white: #ffffff; /* Background for content cards, white sections, and containers*/
     --overlay-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+    --section-margin:60px;
 }
 @font-face {
     font-family: "roboto";
@@ -29,6 +28,7 @@
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    scroll-padding: 120px;
     font-family:"roboto";
 }
 /*? ----------------------- navbar style ----------------------- */
@@ -94,6 +94,37 @@
     margin: 0 auto;
     padding: 0 20px 40px;
 }
+
+
+/*? ----start main componant----- */
+.spacial-heading {
+    font-size: 100px;
+    font-weight: 800;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -3px;
+    color: #ebeced;
+    text-transform: uppercase;
+}
+
+.spacial-heading+p {
+    margin: -120px 0 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-body);
+}
+
+
+.main_link {
+    display: block;
+    text-decoration: none;
+    color: var(--icon-highlight);
+    padding-top: 15px;
+}
+
+/* end main componant */
+
 
 /*? ----Footer Column Styling----- */
 .footer-column {
@@ -202,10 +233,17 @@
     .social-links {
         margin-top: 10px;
     }
+    .spacial-heading{
+        font-size: 2.5rem;
+    }
+    :root{
+        --section-margin: 100px;
+    }
 }
-
 @media (max-width: 576px) {
     .footer-column {
         flex: 1 1 100%;
     }
 }
+
+

@@ -1,9 +1,8 @@
 <?php
-include "includes/db_connect.php";
-
+include_once "includes/db_connect.php";
+include "config.php";
 $places_query = "SELECT * FROM places ORDER BY p_ID DESC ";
 $places_result = $conn->query($places_query);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,11 +13,12 @@ $places_result = $conn->query($places_query);
     <title>places - Mother Of The World</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/places.css">
 </head>
 <body>
+    <?php include 'includes/header.php'; ?>
     <div class="page-hero">
         <div class="container">
             <h1 class="hero-title">PLACES</h1>
@@ -62,6 +62,8 @@ $places_result = $conn->query($places_query);
             </div>
         </div>
     </section>
+    <?php include 'includes/footer.php'; ?>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

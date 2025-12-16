@@ -245,14 +245,9 @@ if ($selected_category_id > 0) {
             </div>
         </section>
     </div>
-    <?php endif; ?>
-    
-    <?php if (file_exists(dirname(__FILE__) . '/includes/footer.php')): ?>
-        <?php include dirname(__FILE__) . '/includes/footer.php'; ?>
-    <?php endif; ?>
-    
+    <?php endif; ?>    
+    <?php include 'includes/footer.php'; ?>
     <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('.fade-in');

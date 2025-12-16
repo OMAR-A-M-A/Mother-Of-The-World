@@ -130,7 +130,7 @@
     position:absolute;
     top: -270px;
     right: 10px;
-    background: var(--primary-orange); 
+    background: var(--secondary-accent); 
     color: var(--text-white);
     padding: 6px 15px;
     border-radius: 20px;
@@ -250,7 +250,7 @@
     color: var(--text-white);
     font-weight: 600;
     font-size: 1rem;
-    background: var(--primary-orange);
+    background: var(--secondary-accent);
     padding: 5px 15px;
     border-radius: 20px;
     display: inline-block;
@@ -310,7 +310,7 @@
     left: 0;
     width: 60px;
     height: 3px;
-    background-color: var(--primary-orange); 
+    background-color: var(--secondary-accent); 
 }
 
 .opening-hours {

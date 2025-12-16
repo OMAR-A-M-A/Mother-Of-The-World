@@ -1,8 +1,8 @@
 .page-hero {
     position: relative;
-    background-image: url('../uploads/governorates/photo-1469854523086-cc02fe5d8800.avif');
+    background-image: url('../images/places-hero.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 50vh;

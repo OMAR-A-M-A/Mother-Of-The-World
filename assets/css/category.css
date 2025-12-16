@@ -1,6 +1,6 @@
 .page-hero {
     position: relative;
-    background-image: url('../uploads/governorates/photo-1469854523086-cc02fe5d8800.avif');
+    background-image: url('../images/gategory-herobg.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -175,7 +175,7 @@
     position:absolute;
     top: -270px;
     right: 10px;
-    background: var(--primary-orange); 
+    background: var(--secondary-accent); 
     color: var(--text-white);
     padding: 6px 15px;
     border-radius: 20px;
@@ -295,7 +295,7 @@
     color: var(--text-white);
     font-weight: 600;
     font-size: 1rem;
-    background: var(--primary-orange);
+    background: var(--secondary-accent);
     padding: 5px 15px;
     border-radius: 20px;
     display: inline-block;
@@ -352,7 +352,7 @@
     left: 0;
     width: 60px;
     height: 3px;
-    background-color: var(--primary-orange); 
+    background-color: var(--secondary-accent); 
 }
 
 .opening-hours {

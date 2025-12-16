@@ -41,6 +41,7 @@ if ($selected_gov_id > 0) {
     <link rel="stylesheet" href="assets/css/gov-details.css">
 </head>
 <body>
+    <?php include 'includes/header.php'; ?>
     <?php
     $gov_bg_image = '';
     if (!empty($selected_gov_image)) {

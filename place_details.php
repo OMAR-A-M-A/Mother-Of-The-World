@@ -167,7 +167,7 @@ if (!empty($place['main_image'])) {
 
     </div>
 
-        <?php include '/includes/footer.php'; ?>
+        <?php include 'includes/footer.php'; ?>
 
     <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
 
